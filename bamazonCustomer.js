@@ -56,20 +56,19 @@ function buyProducts() {
 
 function salesTicket(itemID, combinedAmnt) {
   connection.query('Select * FROM products WHERE id = ' + itemID, function(err,res){
-    console.log(err, res)
-    if (err) throw err
+    if (err) throw err;
+    // console.log("rows", res.rows);
     if (combinedAmnt <= res[0].stock_quantity){
       const totalPrice = res[0].price * combinedAmnt;
       console.log("The total cost for " + combinedAmnt + " " +res[0].product_name + " is " + totalPrice + ", Thanks Come Again!");
-      connection.query("UPDATE products SET stock_quantity = stock_quantity - " + combinedAmnt + "WHERE id = " + itemID);
+      connection.query(`UPDATE products SET stock_quantity = stock_quantity - '${combinedAmnt}' WHERE id = '${itemID}';`);
     }
   else {
     console.log("Insufficient Quantity!" +res[0].product_name);
   };
-  
 
 });
-buyProducts();
+
 }};
 
 
