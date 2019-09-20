@@ -66,7 +66,7 @@ function salesTicket(itemID, combinedAmnt) {
   else {
     console.log("Insufficient Quantity!" +res[0].product_name);
   };
-
+  buyProducts();
 });
 
 }};
